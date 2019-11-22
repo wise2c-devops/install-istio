@@ -55,7 +55,7 @@ helm3 install install/kubernetes/helm/istio -g --namespace istio-system --set ga
 
 echo 'Phase2 done!'
 
-cd ../
+cd ../../
 
 kubectl apply -f template/kiali-service.yaml
 kubectl apply -f template/jaeger-service.yaml
