@@ -10,6 +10,8 @@ MyImageRepositoryProject=library
 IstioVersion=`cat components.txt |grep "Istio Version" |awk '{print $3}'`
 
 ######### Push images #########
+docker load -i file/istio-images-$IstioVersion.tar
+
 for file in $(cat file/images-list.txt); do docker tag $file $MyImageRepositoryIP/$MyImageRepositoryProject/${file##*/}; done
 
 echo 'Images taged.'
