@@ -20,3 +20,5 @@ bash init.sh
 cd install-istio
 bash deploy.sh
 ```
+
+If you want to change the nodeport for 4 services (Prometheus, Grafana, Kiali, Jaeger), please update the files in template folder.
