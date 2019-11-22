@@ -2,8 +2,8 @@
 set -e
 
 tar zxvf file/helm-linux-amd64.tar.gz --strip-components=1 -C /tmp/
-mv /tmp/helm /usr/local/bin/helm
-chmod +x /usr/local/bin/helm
+mv /tmp/helm /usr/local/bin/helm3
+chmod +x /usr/local/bin/helm3
 
 MyImageRepositoryIP=`cat components.txt |grep "Harbor Address" |awk '{print $3}'`
 MyImageRepositoryProject=library
@@ -34,7 +34,7 @@ cd ../../
 
 # Istio init deploy
 kubectl create ns istio-system
-helm install install/kubernetes/helm/istio-init -g --namespace istio-system
+helm3 install install/kubernetes/helm/istio-init -g --namespace istio-system
 
 set +e
 ######### Deploy Istio #########
@@ -51,7 +51,7 @@ until [ `for istiocrds in $(kubectl get crds |grep 'istio.io\|certmanager.k8s.io
 echo 'Phase1 done!'
 set -e
 
-helm install install/kubernetes/helm/istio -g --namespace istio-system --set gateways.istio-ingressgateway.type=NodePort --values install/kubernetes/helm/istio/values-istio-demo.yaml
+helm3 install install/kubernetes/helm/istio -g --namespace istio-system --set gateways.istio-ingressgateway.type=NodePort --values install/kubernetes/helm/istio/values-istio-demo.yaml
 
 echo 'Phase2 done!'
 
